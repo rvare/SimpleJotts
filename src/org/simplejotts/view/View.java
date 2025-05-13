@@ -61,12 +61,13 @@ public class View extends JFrame {
 		helpMenu.add(this.aboutOption);
 
 		// Add all menu items to menu bar
-		this.menuBar.add(this.exportMenu);
-		this.menuBar.add(this.helpMenu);
+		this.menuBar.add(exportMenu);
+		this.menuBar.add(helpMenu);
 		this.setJMenuBar(this.menuBar);
 
 		// Create Buttons
 		this.newButton = new JButton("New");
+		this.newButton.addActionListener(new newButtonListener());
 		this.deleteButton = new JButton("Delete");
 		this.settingsButton = new JButton("Settings");
 		// this.settingsButton.setIcon(UIManager.getIcon("FileView.fileIcon"));
@@ -104,5 +105,14 @@ public class View extends JFrame {
 	// Methods
 	public void showMainFrame() {
 		this.setVisible(true);
+	}
+	
+	// Listeners
+	private class newButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			NoteWindow noteWindow = new NoteWindow();
+			noteWindow.setVisible(true);
+		}
 	}
 } // End View class
