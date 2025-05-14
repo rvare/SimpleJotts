@@ -34,22 +34,22 @@ public class NoteWindow extends JFrame {
 	public NoteWindow() {
 		System.out.println("NoteWindow constructor");
 		// Create format buttons
-		JPanel formatPanel = new JPanel();
-		this.boldButton = new JButton("Bold");
-		this.italicButton = new JButton("Italic");
-		this.unorderListButton = new JButton("Bullet");
-		this.orderListButton = new JButton("Number");
-		formatPanel.add(this.boldButton);
-		formatPanel.add(this.italicButton);
-		formatPanel.add(this.unorderListButton);
-		formatPanel.add(this.orderListButton);
-		this.getContentPane().add(BorderLayout.NORTH, formatPanel);
+		// JPanel formatPanel = new JPanel();
+		// this.boldButton = new JButton("Bold");
+		// this.italicButton = new JButton("Italic");
+		// this.unorderListButton = new JButton("Bullet");
+		// this.orderListButton = new JButton("Number");
+		// formatPanel.add(this.boldButton);
+		// formatPanel.add(this.italicButton);
+		// formatPanel.add(this.unorderListButton);
+		// formatPanel.add(this.orderListButton);
+		// this.getContentPane().add(BorderLayout.NORTH, formatPanel);
 
 		// Create editor
 		JPanel editorPanel = new JPanel();
 		this.getContentPane().add(BorderLayout.CENTER, editorPanel);
 		this.editorArea = new JTextArea(20, 40);
-		// this.editorArea = new JEditorPane();
+		// this.editorArea = new JTextPane();
 		this.editorArea.setLineWrap(true);
 		this.editorArea.setFont(editorArea.getFont().deriveFont(14f));
 		JScrollPane scroller = new JScrollPane(this.editorArea);
