@@ -12,6 +12,9 @@ import java.util.*;
 import java.util.LinkedList;
 import java.util.Arrays;
 
+import org.simplejotts.view.AboutDialog;
+import org.simplejotts.view.DocumentationDialog;
+
 public class View extends JFrame {
 	private String noteContentBuffer;
 
@@ -49,15 +52,19 @@ public class View extends JFrame {
 		// Create file menu and its items
 		JMenu exportMenu = new JMenu("Export");
 		this.exportSelectedOption = new JMenuItem("Export Selected");
+		this.exportSelectedOption.addActionListener(new ExportSelectedListener());
 		exportMenu.add(this.exportSelectedOption);
 		this.exportAllOption = new JMenuItem("Export All");
+		this.exportAllOption.addActionListener(new ExportAllListener());
 		exportMenu.add(this.exportAllOption);
 
 		// Create Help menu and its items
 		JMenu helpMenu = new JMenu("Help");
 		this.docOption = new JMenuItem("Documentation");
+		this.docOption.addActionListener(new DocumentaitonDialogListener());
 		helpMenu.add(this.docOption);
 		this.aboutOption = new JMenuItem("About");
+		this.aboutOption.addActionListener(new AboutDialogListener());
 		helpMenu.add(this.aboutOption);
 
 		// Add all menu items to menu bar
@@ -69,14 +76,14 @@ public class View extends JFrame {
 		this.newButton = new JButton("New");
 		this.newButton.addActionListener(new newButtonListener());
 		this.deleteButton = new JButton("Delete");
-		this.settingsButton = new JButton("Settings");
+		// this.settingsButton = new JButton("Settings");
 		// this.settingsButton.setIcon(UIManager.getIcon("FileView.fileIcon"));
 
 		// Create buttons panel
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(this.newButton);
 		buttonPanel.add(this.deleteButton);
-		buttonPanel.add(this.settingsButton);
+		// buttonPanel.add(this.settingsButton);
 		this.getContentPane().add(BorderLayout.NORTH, buttonPanel);
 
 		// Create JList
@@ -108,12 +115,81 @@ public class View extends JFrame {
 		this.setVisible(true);
 	}
 	
+	public void displayAboutDialogWindow() {
+		// AboutDialog aboutDialog = new AboutDialog();
+		// aboutDialog.setVisible(true);
+		new AboutDialog().setVisible(true); // Is this okay?
+	}
+
+	public void displayDocumentationDialogWindow() {
+		DocumentationDialog docDialog = new DocumentationDialog();
+		docDialog.setVisible(true);
+	}
+
+	public JFileChooser createExportSelectedWindow() {
+		JFileChooser fileExporter = new JFileChooser();
+		fileExporter.setAcceptAllFileFilterUsed(false);
+
+		FileNameExtensionFilter htmlFilter = new FileNameExtensionFilter("HTML", "html");
+		fileExporter.addChoosableFileFilter(htmlFilter);
+
+		FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("Text", "txt");
+		fileExporter.addChoosableFileFilter(txtFilter);
+
+		fileExporter.showSaveDialog(this);
+
+		return fileExporter;
+	}
+
+	public JFileChooser createExportAllWindow() {
+		JFileChooser fileExporter = new JFileChooser();
+		fileExporter.setAcceptAllFileFilterUsed(false);
+
+		FileNameExtensionFilter htmlFilter = new FileNameExtensionFilter("HTML", "html");
+		fileExporter.addChoosableFileFilter(htmlFilter);
+
+		FileNameExtensionFilter txtFilter = new FileNameExtensionFilter("Text", "txt");
+		fileExporter.addChoosableFileFilter(txtFilter);
+
+		fileExporter.showSaveDialog(this);
+
+		return fileExporter;
+	}
+	
 	// Listeners
 	private class newButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			NoteWindow noteWindow = new NoteWindow();
 			noteWindow.setVisible(true);
+		}
+	}
+
+	private class AboutDialogListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			displayAboutDialogWindow();
+		}
+	}
+
+	private class ExportSelectedListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			JFileChooser exportWindow = createExportSelectedWindow();
+		}
+	}
+
+	private class ExportAllListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			JFileChooser exportWindow = createExportAllWindow();
+		}
+	}
+
+	private class DocumentaitonDialogListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			displayDocumentationDialogWindow();
 		}
 	}
 } // End View class
