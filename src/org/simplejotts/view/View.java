@@ -85,6 +85,7 @@ public class View extends JFrame {
 		JPanel listPanel = new JPanel();
 		// listPanel.add(new JScrollPane(this.noteList)); // Here until we know for certain we don't need it
 		this.getContentPane().add(BorderLayout.CENTER, new JScrollPane(this.noteList));
+		// this.getContentPane().add(BorderLayout.CENTER, listPanel);
 
 		// Create the frame
 		this.setTitle(this.WINDOW_TITLE);
@@ -94,7 +95,7 @@ public class View extends JFrame {
 
 	// Getters
 	public String getNoteContentBuffer() {
-		return " ";
+		return noteContentBuffer;
 	}
 
 	// Setters

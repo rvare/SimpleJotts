@@ -25,10 +25,11 @@ public class NoteWindow extends JFrame {
 
 	// Text Area
 	private JTextArea editorArea;
+	// private JTextPane editorArea;
 
 	// Constants
 	private static short DEFAULT_WIDTH = 500;
-	private static short DEFAULT_HEIGHT = 450;
+	private static short DEFAULT_HEIGHT = 500;
 
 	public NoteWindow() {
 		System.out.println("NoteWindow constructor");
@@ -48,7 +49,9 @@ public class NoteWindow extends JFrame {
 		JPanel editorPanel = new JPanel();
 		this.getContentPane().add(BorderLayout.CENTER, editorPanel);
 		this.editorArea = new JTextArea(20, 40);
+		// this.editorArea = new JEditorPane();
 		this.editorArea.setLineWrap(true);
+		this.editorArea.setFont(editorArea.getFont().deriveFont(14f));
 		JScrollPane scroller = new JScrollPane(this.editorArea);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		editorPanel.add(scroller);
