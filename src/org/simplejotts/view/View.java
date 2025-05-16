@@ -1,16 +1,16 @@
 package org.simplejotts.view;
 
+import java.util.*;
+import java.util.LinkedList;
+import java.util.Arrays;
+import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.UIManager;
-import java.io.*;
-import java.util.*;
-import java.util.LinkedList;
-import java.util.Arrays;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.simplejotts.view.AboutDialog;
 import org.simplejotts.view.DocumentationDialog;
