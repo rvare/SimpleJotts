@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -92,11 +91,23 @@ public class Model {
 	}
 
 	// Exporting
-	public void exportSelectedNote() {
+	public void exportSelectedNote() throws IOException, JSONException {
 
 	}
 
-	public void exportAllNotes() {
+	public void exportAllNotes() throws IOException, JSONException {
+
+	}
+
+	public void exportToHTML() throws IOException {
+
+	}
+
+	public void exportToMarkdown() throws IOException {
+
+	}
+
+	public void exportToText() throws IOException {
 
 	}
 } // End Model
