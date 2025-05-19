@@ -12,7 +12,7 @@ public class AboutDialog extends JDialog {
 	private static short DEFAULT_HEIGHT = 150;
 
 	public AboutDialog() {
-		System.out.println("About Dialog");
+		System.out.println("About Dialog contructor");
 		this.setTitle("About");
 
 		JLabel applicationTitle = new JLabel("Simple Jotts");

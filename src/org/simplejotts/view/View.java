@@ -14,6 +14,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import org.simplejotts.view.AboutDialog;
 import org.simplejotts.view.DocumentationDialog;
+import org.simplejotts.view.NoteWindow;
 
 public class View extends JFrame {
 	private String noteContentBuffer;
@@ -52,19 +53,19 @@ public class View extends JFrame {
 		// Create file menu and its items
 		JMenu exportMenu = new JMenu("Export");
 		this.exportSelectedOption = new JMenuItem("Export Selected");
-		this.exportSelectedOption.addActionListener(new ExportSelectedListener());
+		// this.exportSelectedOption.addActionListener(new ExportSelectedListener());
 		exportMenu.add(this.exportSelectedOption);
 		this.exportAllOption = new JMenuItem("Export All");
-		this.exportAllOption.addActionListener(new ExportAllListener());
+		// this.exportAllOption.addActionListener(new ExportAllListener());
 		exportMenu.add(this.exportAllOption);
 
 		// Create Help menu and its items
 		JMenu helpMenu = new JMenu("Help");
 		this.docOption = new JMenuItem("Documentation");
-		this.docOption.addActionListener(new DocumentaitonDialogListener());
+		// this.docOption.addActionListener(new DocumentaitonDialogListener());
 		helpMenu.add(this.docOption);
 		this.aboutOption = new JMenuItem("About");
-		this.aboutOption.addActionListener(new AboutDialogListener());
+		// this.aboutOption.addActionListener(new AboutDialogListener());
 		helpMenu.add(this.aboutOption);
 
 		// Add all menu items to menu bar
@@ -74,7 +75,7 @@ public class View extends JFrame {
 
 		// Create Buttons
 		this.newButton = new JButton("New");
-		this.newButton.addActionListener(new newButtonListener());
+		// this.newButton.addActionListener(new newButtonListener());
 		this.deleteButton = new JButton("Delete");
 		// this.settingsButton = new JButton("Settings");
 		// this.settingsButton.setIcon(UIManager.getIcon("FileView.fileIcon"));
@@ -98,7 +99,7 @@ public class View extends JFrame {
 		this.setTitle(this.WINDOW_TITLE);
 		this.setSize(this.DEFAULT_WIDTH, this.DEFAULT_HEIGHT);
 		this.setResizable(false);
-	}
+	} // End constructor
 
 	// Getters
 	public String getNoteContentBuffer() {
@@ -124,6 +125,10 @@ public class View extends JFrame {
 	public void displayDocumentationDialogWindow() {
 		DocumentationDialog docDialog = new DocumentationDialog();
 		docDialog.setVisible(true);
+	}
+
+	public NoteWindow createNoteWindow() {
+		return new NoteWindow();
 	}
 
 	public JFileChooser createExportSelectedWindow() {
@@ -157,39 +162,30 @@ public class View extends JFrame {
 	}
 	
 	// Listeners
-	private class newButtonListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			NoteWindow noteWindow = new NoteWindow();
-			noteWindow.setVisible(true);
-		}
+
+	// Add Listeners
+	public void addNewButtonListener(ActionListener newButtonListener) {
+		this.newButton.addActionListener(newButtonListener);
+		System.out.println("Does this still work?");
 	}
 
-	private class AboutDialogListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			displayAboutDialogWindow();
-		}
+	public void addDeleteButtonListener(ActionListener deleteButtonListener) {
+		this.newButton.addActionListener(deleteButtonListener);
 	}
 
-	private class ExportSelectedListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			JFileChooser exportWindow = createExportSelectedWindow();
-		}
+	public void addAboutDialogListener(ActionListener aboutOptionListener) {
+		this.aboutOption.addActionListener(aboutOptionListener);
 	}
 
-	private class ExportAllListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			JFileChooser exportWindow = createExportAllWindow();
-		}
+	public void addDocumentaitonDialogListener(ActionListener docOptionListener) {
+		this.docOption.addActionListener(docOptionListener);
 	}
 
-	private class DocumentaitonDialogListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
-			displayDocumentationDialogWindow();
-		}
+	public void addExportSelectedListener(ActionListener exportSelectedListener) {
+		this.exportSelectedOption.addActionListener(exportSelectedListener);
+	}
+
+	public void addExportAllListener(ActionListener exportAllListener) {
+		this.exportAllOption.addActionListener(exportAllListener);
 	}
 } // End View class

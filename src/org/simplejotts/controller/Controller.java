@@ -27,20 +27,40 @@ public class Controller {
 		this.view = view;
 
 		// Create menu bar listeners
+		this.view.addAboutDialogListener(new AboutDialogListener());
+		this.view.addDocumentaitonDialogListener(new DocumentaitonDialogListener());
+		this.view.addExportSelectedListener(new ExportSelectedListener());
+		this.view.addExportAllListener(new ExportAllListener());
 
 		// Create button listeners
+		this.view.addNewButtonListener(new newButtonListener());
+		this.view.addDeleteButtonListener(new deleteButtonListener());
 
 		// Create list listeners
 
+		// Create mouse listeners
+
 	}
 
-	public refreshViewListModel() {
-
+	public void refreshViewListModel() {
+		// LinkedList<Note> noteList = this.model.getNoteList();
+		// this.view.refreshListModel();
 	}
 
 	// Operations
 	private void newOperation() {
+		System.out.println("newOperation");
+		NoteWindow noteWindow = this.view.createNoteWindow();
+		noteWindow.setVisible(true);
+		System.out.println("Execution continues");
 
+		// if (noteDialog.canceledHit()) { return; }
+		// int id = assign id
+		String content = noteWindow.getTextEditorContent();
+		// LocalDateTime dateCreated = new LocalDateTime();
+		// LocalDateTime dateModified = new LocalDateTime();
+		// this.model.newNote();
+		// this.refreshViewListModel();
 	}
 
 	private void editOperation() {
@@ -55,20 +75,23 @@ public class Controller {
 	private class ExportSelectedListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			JFileChooser exportWindow = createExportSelectedWindow();
+			System.out.println("Export listener");
+			JFileChooser exportWindow = view.createExportSelectedWindow();
 		}
 	}
 
 	private class ExportAllListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			JFileChooser exportWindow = createExportAllWindow();
+			System.out.println("Export all listener");
+			JFileChooser exportWindow = view.createExportAllWindow();
 		}
 	}
 
 	private class DocumentaitonDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
+			System.out.println("Doc listener");
 			view.displayDocumentationDialogWindow();
 		}
 	}
@@ -76,6 +99,7 @@ public class Controller {
 	private class AboutDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
+			System.out.println("About dialog listener");
 			view.displayAboutDialogWindow();
 		}
 	}
@@ -84,22 +108,21 @@ public class Controller {
 	private class newButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			NoteWindow noteWindow = new NoteWindow();
-			noteWindow.setVisible(true);
+			System.out.println("New button hit");
+			newOperation();
 		}
 	}
 
 	private class deleteButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-
 		}
 	}
 
 	// JList listener
 	private class listListener implements ListSelectionListener {
 		@Override
-		public void valueCHanged(ListSelectionEvent listEvent) {
+		public void valueChanged(ListSelectionEvent listEvent) {
 			if (!listEvent.getValueIsAdjusting()) {
 			}
 		}
