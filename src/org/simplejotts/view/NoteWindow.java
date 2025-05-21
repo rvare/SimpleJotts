@@ -34,6 +34,7 @@ public class NoteWindow extends JFrame {
 	public NoteWindow() {
 		System.out.println("NoteWindow constructor");
 		// Create format buttons
+		// Leaving these here for now when I get a chance to implement them.
 		// JPanel formatPanel = new JPanel();
 		// this.boldButton = new JButton("Bold");
 		// this.italicButton = new JButton("Italic");
@@ -71,7 +72,7 @@ public class NoteWindow extends JFrame {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// this.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
 		this.setResizable(false);
-	}
+	} // End construction
 
 	// Getters
 	public String getTextEditorContent() {
@@ -81,4 +82,4 @@ public class NoteWindow extends JFrame {
 	// Setters
 
 	// Listeners
-}
+} // End NoteWindow

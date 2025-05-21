@@ -130,4 +130,10 @@ public class Controller {
 			}
 		}
 	}
+
+	private class ListMouseAdapter extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent event) {
+		}
+	}
 } // End Controller
