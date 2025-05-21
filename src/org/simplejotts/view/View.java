@@ -117,14 +117,11 @@ public class View extends JFrame {
 	}
 	
 	public void displayAboutDialogWindow() {
-		// AboutDialog aboutDialog = new AboutDialog();
-		// aboutDialog.setVisible(true);
-		new AboutDialog().setVisible(true); // Is this okay?
+		new AboutDialog().setVisible(true);
 	}
 
 	public void displayDocumentationDialogWindow() {
-		DocumentationDialog docDialog = new DocumentationDialog();
-		docDialog.setVisible(true);
+		new DocumentationDialog().setVisible(true);
 	}
 
 	public NoteWindow createNoteWindow() {
@@ -160,8 +157,6 @@ public class View extends JFrame {
 
 		return fileExporter;
 	}
-	
-	// Listeners
 
 	// Add Listeners
 	public void addNewButtonListener(ActionListener newButtonListener) {
@@ -170,7 +165,7 @@ public class View extends JFrame {
 	}
 
 	public void addDeleteButtonListener(ActionListener deleteButtonListener) {
-		this.newButton.addActionListener(deleteButtonListener);
+		this.deleteButton.addActionListener(deleteButtonListener);
 	}
 
 	public void addAboutDialogListener(ActionListener aboutOptionListener) {
@@ -187,5 +182,9 @@ public class View extends JFrame {
 
 	public void addExportAllListener(ActionListener exportAllListener) {
 		this.exportAllOption.addActionListener(exportAllListener);
+	}
+
+	public void addListSelectionListener(ListSelectionListener ll) {
+		this.noteList.addListSelectionListener(ll);
 	}
 } // End View class

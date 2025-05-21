@@ -37,6 +37,7 @@ public class Controller {
 		this.view.addDeleteButtonListener(new deleteButtonListener());
 
 		// Create list listeners
+		this.view.addListSelectionListener(new ListListener());
 
 		// Create mouse listeners
 
@@ -64,11 +65,11 @@ public class Controller {
 	}
 
 	private void editOperation() {
-
+		System.out.println("Edit operaiton");
 	}
 
 	private void deleteOperation() {
-
+		System.out.println("Delete operaiton");
 	}
 
 	// Menu bar listeners
@@ -116,11 +117,13 @@ public class Controller {
 	private class deleteButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
+			System.out.println("Delete button hit");
+			deleteOperation();
 		}
 	}
 
 	// JList listener
-	private class listListener implements ListSelectionListener {
+	private class ListListener implements ListSelectionListener {
 		@Override
 		public void valueChanged(ListSelectionEvent listEvent) {
 			if (!listEvent.getValueIsAdjusting()) {
