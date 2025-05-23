@@ -10,6 +10,7 @@ public class SimpleJottsMain {
 		View view = new View();
 		// view.showMainFrame();
 		Model model = new Model();
+		model.newNote("This is a note");
 		Controller controller = new Controller(model, view);
 		view.showMainFrame();
 	}

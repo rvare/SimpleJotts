@@ -21,10 +21,11 @@ public class Note {
 	}
 
 	public Note(final int id, final String content, final LocalDate dateCreated, final LocalDate dateModified) {
+		System.out.println("Called");
 		this.id = id;
 		this.content = content;
 		this.dateCreated = dateCreated;
-		this.dateCreated = dateModified;
+		this.dateModified = dateModified;
 	}
 
 	public int getId() {

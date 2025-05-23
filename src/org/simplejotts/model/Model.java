@@ -20,6 +20,7 @@ import org.simplejotts.model.Note;
 public class Model {
 	private LinkedList<Note> noteList;
 	private boolean dirtyFlag;
+	private int curr_id_number;
 
 	// Constants
 	private static String FILE_PATH = "../../test.json";
@@ -37,9 +38,11 @@ public class Model {
 			System.out.println(exp.getMessage());
 			noteFileContents = " ";
 		}
+		// String noteFileContents = this.openDataFile();
 
 		JSONObject jsonObject = new JSONObject(noteFileContents);
 		System.out.println(jsonObject);
+		this.curr_id_number = jsonObject.getInt("id_accumulator");
 		JSONArray noteArray = new JSONArray(jsonObject.get("notes").toString());
 		System.out.println(noteArray);
 
@@ -62,52 +65,60 @@ public class Model {
 
 	// Getters
 	public void getNote() {
-
+		System.out.println("getNote");
 	}
 
 	// Operations
-	public void openDataFile() {
-
+	public void openDataFile() throws IOException {
+		System.out.println("openDateFile");
 	}
 
 	public void saveDataFile() {
-
+		System.out.println("saveDataFile");
 	}
 
-	public void newNote() {
+	public void newNote(String noteContent) {
+		System.out.println("newNote");
+		int id = this.curr_id_number++;
+		LocalDate dateCreated = LocalDate.now();
+		LocalDate dateModified = LocalDate.now();
 
+		Note note = new Note(id, noteContent, dateCreated, dateModified);
+		System.out.println(note);
+		this.noteList.add(note);
+		System.out.println(this.noteList);
 	}
 
 	public void deleteNote() {
-
+		System.out.println("deleteNote");
 	}
 
 	public void editNote() {
-
+		System.out.println("editNote");
 	}
 
 	public void saveNotes() {
-
+		System.out.println("saveNote");
 	}
 
 	// Exporting
 	public void exportSelectedNote() throws IOException, JSONException {
-
+		System.out.println("exportSelectedNote");
 	}
 
 	public void exportAllNotes() throws IOException, JSONException {
-
+		System.out.println("exportAllNotes");
 	}
 
 	public void exportToHTML() throws IOException {
-
+		System.out.println("exportToHTML");
 	}
 
 	public void exportToMarkdown() throws IOException {
-
+		System.out.println("exportToMarkdown");
 	}
 
 	public void exportToText() throws IOException {
-
+		System.out.println("exportToText");
 	}
 } // End Model
