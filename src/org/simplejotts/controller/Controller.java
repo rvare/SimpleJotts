@@ -40,6 +40,7 @@ public class Controller {
 		this.view.addListSelectionListener(new ListListener());
 
 		// Create mouse listeners
+		this.view.addDoubleClickListener(new DoubleClickListener());
 
 		// this.view.addToListModel((LinkedList<Object>)this.model.getList());
 		LinkedList<Note> noteList = this.model.getList();
@@ -136,14 +137,20 @@ public class Controller {
 		@Override
 		public void valueChanged(ListSelectionEvent listEvent) {
 			if (!listEvent.getValueIsAdjusting()) {
+				ListMenuItem item = view.getNoteList().getSelectedValue();
+				if (item == null) { return; }
+				System.out.println(item);
 			}
 		}
 	}
 
-	private class ListMouseAdapter extends MouseAdapter {
+	private class DoubleClickListener extends MouseAdapter {
 		@Override
-		public void mouseClicked(MouseEvent event) {
+		public void mouseClicked(MouseEvent evt) {
+			System.out.println("Clicked");
+			if (evt.getClickCount() == 2) {
+				System.out.println("DOUBLE CLICK WOW!!!!1!!1!");
+			}
 		}
 	}
-
 } // End Controller

@@ -14,10 +14,10 @@ public class NoteWindow extends JFrame {
 	private String noteContentBuffer;
 
 	// Text format buttons
-	private JButton boldButton;
-	private JButton italicButton;
-	private JButton unorderListButton;
-	private JButton orderListButton;
+	// private JButton boldButton;
+	// private JButton italicButton;
+	// private JButton unorderListButton;
+	// private JButton orderListButton;
 
 	// Buttons
 	private JButton saveButton;
@@ -31,7 +31,7 @@ public class NoteWindow extends JFrame {
 	private static short DEFAULT_WIDTH = 500;
 	private static short DEFAULT_HEIGHT = 500;
 
-	public NoteWindow() {
+	public NoteWindow(String noteContent) {
 		System.out.println("NoteWindow constructor");
 		// Create format buttons
 		// Leaving these here for now when I get a chance to implement them.
@@ -49,7 +49,7 @@ public class NoteWindow extends JFrame {
 		// Create editor
 		JPanel editorPanel = new JPanel();
 		this.getContentPane().add(BorderLayout.CENTER, editorPanel);
-		this.editorArea = new JTextArea(20, 40);
+		this.editorArea = noteContent == null ? new JTextArea(20, 40) : new JTextArea(noteContent, 20, 40);
 		// this.editorArea = new JTextPane();
 		this.editorArea.setLineWrap(true);
 		this.editorArea.setFont(editorArea.getFont().deriveFont(14f));
@@ -73,6 +73,10 @@ public class NoteWindow extends JFrame {
 		// this.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
 		this.setResizable(false);
 	} // End construction
+
+	public NoteWindow() {
+		this(null);
+	}
 
 	// Getters
 	public String getTextEditorContent() {

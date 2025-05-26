@@ -92,7 +92,6 @@ public class View extends JFrame {
 		this.listModel = new DefaultListModel<ListMenuItem>();
 		this.noteList = new JList<ListMenuItem>();
 		this.noteList.setModel(this.listModel);
-		this.noteList.addMouseListener(new DoubleClickListener());
 		JPanel listPanel = new JPanel();
 		// listPanel.add(new JScrollPane(this.noteList)); // Here until we know for certain we don't need it
 		this.getContentPane().add(BorderLayout.CENTER, new JScrollPane(this.noteList));
@@ -107,6 +106,10 @@ public class View extends JFrame {
 	// Getters
 	public String getNoteContentBuffer() {
 		return noteContentBuffer;
+	}
+
+	public JList<ListMenuItem> getNoteList() {
+		return this.noteList;
 	}
 
 	// Setters
@@ -200,13 +203,8 @@ public class View extends JFrame {
 		this.noteList.addListSelectionListener(ll);
 	}
 
-	private class DoubleClickListener extends MouseAdapter {
-		@Override
-		public void mouseClicked(MouseEvent evt) {
-			System.out.println("Clicked");
-			if (evt.getClickCount() == 2) {
-				System.out.println("DOUBLE CLICK WOW!!!!1!!1!");
-			}
-		}
+	public void addDoubleClickListener(MouseAdapter ma) {
+		noteList.addMouseListener(ma);
 	}
+
 } // End View class
