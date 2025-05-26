@@ -41,6 +41,15 @@ public class Controller {
 
 		// Create mouse listeners
 
+		// this.view.addToListModel((LinkedList<Object>)this.model.getList());
+		LinkedList<Note> noteList = this.model.getList();
+		LinkedList<ListMenuItem> ll = new LinkedList<ListMenuItem>();
+		for (Note n : noteList) {
+			ll.add(new ListMenuItem(n.getContent(), n.getDateCreated()));
+		}
+
+		this.view.addToListModel(ll);
+
 	}
 
 	public void refreshViewListModel() {
@@ -136,4 +145,5 @@ public class Controller {
 		public void mouseClicked(MouseEvent event) {
 		}
 	}
+
 } // End Controller

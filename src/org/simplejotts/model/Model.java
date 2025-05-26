@@ -68,6 +68,10 @@ public class Model {
 		System.out.println("getNote");
 	}
 
+	public LinkedList<Note> getList() {
+		return this.noteList;
+	}
+
 	// Operations
 	public void openDataFile() throws IOException {
 		System.out.println("openDateFile");

@@ -15,6 +15,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import org.simplejotts.view.AboutDialog;
 import org.simplejotts.view.DocumentationDialog;
 import org.simplejotts.view.NoteWindow;
+import org.simplejotts.view.ListMenuItem;
 
 public class View extends JFrame {
 	private String noteContentBuffer;
@@ -35,8 +36,8 @@ public class View extends JFrame {
 	private JButton settingsButton;
 
 	// List GUI
-	private JList<Object> noteList;
-	private DefaultListModel<Object> listModel;
+	private JList<ListMenuItem> noteList;
+	private DefaultListModel<ListMenuItem> listModel;
 
 	// Constants
 	private final static short DEFAULT_WIDTH = 400;
@@ -88,8 +89,10 @@ public class View extends JFrame {
 		this.getContentPane().add(BorderLayout.NORTH, buttonPanel);
 
 		// Create JList
-		this.listModel = new DefaultListModel<Object>();
-		this.noteList = new JList<Object>();
+		this.listModel = new DefaultListModel<ListMenuItem>();
+		this.noteList = new JList<ListMenuItem>();
+		this.noteList.setModel(this.listModel);
+		this.noteList.addMouseListener(new DoubleClickListener());
 		JPanel listPanel = new JPanel();
 		// listPanel.add(new JScrollPane(this.noteList)); // Here until we know for certain we don't need it
 		this.getContentPane().add(BorderLayout.CENTER, new JScrollPane(this.noteList));
@@ -158,6 +161,15 @@ public class View extends JFrame {
 		return fileExporter;
 	}
 
+	public void addToListModel(final LinkedList<ListMenuItem> ll) {
+		System.out.println("Here");
+		System.out.println(ll);
+		listModel.clear();
+		for (ListMenuItem i : ll) {
+			this.listModel.addElement(i);
+		}
+	}
+
 	// Add Listeners
 	public void addNewButtonListener(ActionListener newButtonListener) {
 		this.newButton.addActionListener(newButtonListener);
@@ -186,5 +198,15 @@ public class View extends JFrame {
 
 	public void addListSelectionListener(ListSelectionListener ll) {
 		this.noteList.addListSelectionListener(ll);
+	}
+
+	private class DoubleClickListener extends MouseAdapter {
+		@Override
+		public void mouseClicked(MouseEvent evt) {
+			System.out.println("Clicked");
+			if (evt.getClickCount() == 2) {
+				System.out.println("DOUBLE CLICK WOW!!!!1!!1!");
+			}
+		}
 	}
 } // End View class
