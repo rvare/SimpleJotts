@@ -68,6 +68,7 @@ public class Controller {
 		System.out.println("Execution continues");
 
 		if (noteWindow.getCancelFlag()) { return; }
+
 		// int id = assign id
 		String content = noteWindow.getTextEditorContent();
 		System.out.println(String.format("Note contents: %s", content));

@@ -10,7 +10,7 @@ import javax.swing.UIManager;
 import java.io.*;
 import java.util.*;
 
-public class NoteWindow extends JFrame {
+public class NoteWindow extends JDialog {
 	private String noteContentBuffer;
 	private boolean cancelFlag;
 
@@ -66,6 +66,7 @@ public class NoteWindow extends JFrame {
 
 		this.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
 		this.saveButton = new JButton("Save");
+		this.saveButton.addActionListener(new SaveButtonListener());
 		buttonPanel.add(this.saveButton);
 
 		this.cancelButton = new JButton("Cancel");
@@ -75,7 +76,7 @@ public class NoteWindow extends JFrame {
 		// Set window attributes
 		this.setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		// this.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
+		this.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
 		this.setResizable(false);
 	} // End construction
 
@@ -98,6 +99,14 @@ public class NoteWindow extends JFrame {
 		public void actionPerformed(ActionEvent event) {
 			System.out.println("Cancel button hit");
 			cancelFlag = true;
+			dispose();
+		}
+	}
+
+	private class SaveButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			System.out.println("Save button hit");
 			dispose();
 		}
 	}
