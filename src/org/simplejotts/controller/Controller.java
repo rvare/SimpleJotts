@@ -21,6 +21,8 @@ import org.simplejotts.view.*;
 public class Controller {
 	private final View view;
 	private final Model model;
+	private ListMenuItem selectedItem;
+	private int selectedItemIndex;
 
 	public Controller(final Model model, final View view) {
 		this.model = model;
@@ -139,17 +141,27 @@ public class Controller {
 			if (!listEvent.getValueIsAdjusting()) {
 				ListMenuItem item = view.getNoteList().getSelectedValue();
 				if (item == null) { return; }
+				selectedItem = item;
+				selectedItemIndex = view.getNoteList().getLeadSelectionIndex();
 				System.out.println(item);
+				System.out.println(selectedItemIndex);
 			}
 		}
 	}
 
+	// Mouse listener
 	private class DoubleClickListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent evt) {
-			System.out.println("Clicked");
+			System.out.println("Single clicked");
 			if (evt.getClickCount() == 2) {
-				System.out.println("DOUBLE CLICK WOW!!!!1!!1!");
+				System.out.println("Double click");
+				LinkedList<Note> ll = model.getList();
+				Note n = ll.get(selectedItemIndex);
+				System.out.println(n);
+				NoteWindow noteWindow = view.createNoteWindow(n.getContent());
+				noteWindow.setVisible(true);
+				System.out.println("Continues in DoubleClickListener");
 			}
 		}
 	}

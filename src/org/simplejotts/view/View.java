@@ -134,6 +134,10 @@ public class View extends JFrame {
 		return new NoteWindow();
 	}
 
+	public NoteWindow createNoteWindow(String content) {
+		return new NoteWindow(content);
+	}
+
 	public JFileChooser createExportSelectedWindow() {
 		JFileChooser fileExporter = new JFileChooser();
 		fileExporter.setAcceptAllFileFilterUsed(false);
