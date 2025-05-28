@@ -67,9 +67,10 @@ public class Controller {
 		noteWindow.setVisible(true);
 		System.out.println("Execution continues");
 
-		// if (noteDialog.canceledHit()) { return; }
+		if (noteWindow.getCancelFlag()) { return; }
 		// int id = assign id
 		String content = noteWindow.getTextEditorContent();
+		System.out.println(String.format("Note contents: %s", content));
 		// LocalDateTime dateCreated = new LocalDateTime();
 		// LocalDateTime dateModified = new LocalDateTime();
 		// this.model.newNote();
@@ -161,6 +162,7 @@ public class Controller {
 				System.out.println(n);
 				NoteWindow noteWindow = view.createNoteWindow(n.getContent());
 				noteWindow.setVisible(true);
+				if (noteWindow.getCancelFlag()) { return; }
 				System.out.println("Continues in DoubleClickListener");
 			}
 		}

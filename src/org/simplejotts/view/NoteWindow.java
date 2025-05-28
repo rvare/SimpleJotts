@@ -12,6 +12,7 @@ import java.util.*;
 
 public class NoteWindow extends JFrame {
 	private String noteContentBuffer;
+	private boolean cancelFlag;
 
 	// Text format buttons
 	// private JButton boldButton;
@@ -46,6 +47,9 @@ public class NoteWindow extends JFrame {
 		// formatPanel.add(this.orderListButton);
 		// this.getContentPane().add(BorderLayout.NORTH, formatPanel);
 
+		// Setting variables
+		this.cancelFlag = false;
+
 		// Create editor
 		JPanel editorPanel = new JPanel();
 		this.getContentPane().add(BorderLayout.CENTER, editorPanel);
@@ -59,12 +63,13 @@ public class NoteWindow extends JFrame {
 
 		// Create buttons
 		JPanel buttonPanel = new JPanel();
+
 		this.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
 		this.saveButton = new JButton("Save");
-		// this.saveButton.addActionListener();
 		buttonPanel.add(this.saveButton);
+
 		this.cancelButton = new JButton("Cancel");
-		// this.cancelButton.addActionListener();
+		this.cancelButton.addActionListener(new CancelButtonListener());
 		buttonPanel.add(this.cancelButton);
 
 		// Set window attributes
@@ -83,7 +88,17 @@ public class NoteWindow extends JFrame {
 		return this.editorArea.getText();
 	}
 
-	// Setters
+	public boolean getCancelFlag() {
+		return this.cancelFlag;
+	}
 
 	// Listeners
+	private class CancelButtonListener implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent event) {
+			System.out.println("Cancel button hit");
+			cancelFlag = true;
+			dispose();
+		}
+	}
 } // End NoteWindow

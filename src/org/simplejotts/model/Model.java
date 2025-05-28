@@ -28,7 +28,8 @@ public class Model {
 	public Model() {
 		this.noteList = new LinkedList<Note>();
 		this.dirtyFlag = false;
-		
+
+		// Open file and get contents
 		String noteFileContents;
 		try {
 			noteFileContents = Files.readString(Paths.get(FILE_PATH));
