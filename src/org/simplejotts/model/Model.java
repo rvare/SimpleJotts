@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Arrays;
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.charset.StandardCharsets;
@@ -53,8 +54,8 @@ public class Model {
 			System.out.println(obj);
 			int id = obj.getInt("id");
 			String content = obj.getString("content");
-			LocalDate dateCreated = LocalDate.parse(obj.getString("date_created"));
-			LocalDate dateModified = LocalDate.parse(obj.getString("date_modified"));
+			LocalDateTime dateCreated = LocalDateTime.parse(obj.getString("date_created"));
+			LocalDateTime dateModified = LocalDateTime.parse(obj.getString("date_modified"));
 
 			Note note = new Note(id, content, dateCreated, dateModified);
 			System.out.println(note);
@@ -85,8 +86,8 @@ public class Model {
 	public void newNote(String noteContent) {
 		System.out.println("newNote");
 		int id = this.curr_id_number++;
-		LocalDate dateCreated = LocalDate.now();
-		LocalDate dateModified = LocalDate.now();
+		LocalDateTime dateCreated = LocalDateTime.now();
+		LocalDateTime dateModified = LocalDateTime.now();
 
 		Note note = new Note(id, noteContent, dateCreated, dateModified);
 		System.out.println(note);

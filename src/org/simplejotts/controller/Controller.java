@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.LinkedList;
 import java.io.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.Toolkit;
@@ -55,12 +56,17 @@ public class Controller {
 
 	}
 
+	// Operations
 	public void refreshViewListModel() {
-		// LinkedList<Note> noteList = this.model.getNoteList();
-		// this.view.refreshListModel();
+		LinkedList<Note> noteList = this.model.getList();
+		LinkedList<ListMenuItem> ll = new LinkedList<ListMenuItem>();
+		for (Note n : noteList) {
+			ll.add(new ListMenuItem(n.getContent(), n.getDateCreated()));
+		}
+		System.out.println(ll);
+		this.view.refreshListModel(ll);
 	}
 
-	// Operations
 	private void newOperation() {
 		System.out.println("newOperation");
 		NoteWindow noteWindow = this.view.createNoteWindow();
@@ -72,10 +78,12 @@ public class Controller {
 		// int id = assign id
 		String content = noteWindow.getTextEditorContent();
 		System.out.println(String.format("Note contents: %s", content));
-		// LocalDateTime dateCreated = new LocalDateTime();
-		// LocalDateTime dateModified = new LocalDateTime();
-		// this.model.newNote();
-		// this.refreshViewListModel();
+		// LocalDateTime dateCreated = LocalDateTime.now();
+		// LocalDateTime dateModified = LocalDateTime.now();
+		// System.out.println(dateCreated);
+		// System.out.println(dateModified);
+		this.model.newNote(content);
+		this.refreshViewListModel();
 	}
 
 	private void editOperation() {

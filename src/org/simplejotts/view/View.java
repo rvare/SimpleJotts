@@ -177,6 +177,13 @@ public class View extends JFrame {
 		}
 	}
 
+	public void refreshListModel(final LinkedList<ListMenuItem> ll) {
+		this.listModel.removeAllElements();
+		this.listModel.clear();
+
+		for (ListMenuItem item : ll) { this.listModel.addElement(item); }
+	}
+
 	// Add Listeners
 	public void addNewButtonListener(ActionListener newButtonListener) {
 		this.newButton.addActionListener(newButtonListener);
