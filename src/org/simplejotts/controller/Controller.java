@@ -86,8 +86,11 @@ public class Controller {
 		this.refreshViewListModel();
 	}
 
-	private void editOperation() {
+	private void editOperation(String newContent) {
 		System.out.println("Edit operaiton");
+		LinkedList<Note> ll = model.getList();
+		Note note = ll.get(selectedItemIndex);
+		note.setContent(newContent);
 	}
 
 	private void deleteOperation() {
@@ -173,6 +176,7 @@ public class Controller {
 				noteWindow.setVisible(true);
 				if (noteWindow.getCancelFlag()) { return; }
 				System.out.println("Continues in DoubleClickListener");
+				editOperation(noteWindow.getTextEditorContent());
 			}
 		}
 	}
