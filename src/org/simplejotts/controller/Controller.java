@@ -96,6 +96,9 @@ public class Controller {
 
 	private void deleteOperation() {
 		System.out.println("Delete operaiton");
+		LinkedList<Note> ll = model.getList();
+		ll.remove(selectedItemIndex);
+		this.refreshViewListModel();
 	}
 
 	// Menu bar listeners
