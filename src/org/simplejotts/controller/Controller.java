@@ -91,6 +91,7 @@ public class Controller {
 		LinkedList<Note> ll = model.getList();
 		Note note = ll.get(selectedItemIndex);
 		note.setContent(newContent);
+		this.refreshViewListModel();
 	}
 
 	private void deleteOperation() {
