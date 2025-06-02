@@ -95,12 +95,15 @@ public class Model {
 		System.out.println(this.noteList);
 	}
 
-	public void deleteNote() {
+	public void deleteNote(final int index) {
 		System.out.println("deleteNote");
+		this.noteList.remove(index);
 	}
 
-	public void editNote() {
+	public void editNote(final int index, final String newContent) {
 		System.out.println("editNote");
+		Note note = this.noteList.get(index);
+		note.setContent(newContent);
 	}
 
 	public void saveNotes() {

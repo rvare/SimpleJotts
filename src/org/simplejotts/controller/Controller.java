@@ -88,16 +88,13 @@ public class Controller {
 
 	private void editOperation(String newContent) {
 		System.out.println("Edit operaiton");
-		LinkedList<Note> ll = model.getList();
-		Note note = ll.get(selectedItemIndex);
-		note.setContent(newContent);
+		this.model.editNote(selectedItemIndex, newContent);
 		this.refreshViewListModel();
 	}
 
 	private void deleteOperation() {
 		System.out.println("Delete operaiton");
-		LinkedList<Note> ll = model.getList();
-		ll.remove(selectedItemIndex);
+		this.model.deleteNote(selectedItemIndex);
 		this.refreshViewListModel();
 	}
 
