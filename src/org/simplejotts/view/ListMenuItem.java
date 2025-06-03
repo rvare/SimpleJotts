@@ -19,6 +19,6 @@ public class ListMenuItem {
 
 	@Override
 	public String toString() {
-		return String.format("%10s    %-80s", this.dateCreated.toLocalDate(), this.preview);
+		return String.format("%10s    %-75s", this.dateCreated.toLocalDate(), this.preview);
 	}
 }
