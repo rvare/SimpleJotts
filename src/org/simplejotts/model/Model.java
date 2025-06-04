@@ -111,8 +111,22 @@ public class Model {
 	}
 
 	// Exporting
-	public void exportSelectedNote() throws IOException, JSONException {
+	public void exportSelectedNote(final JFileChooser fileChooser, final int selectedIndex) throws IOException, JSONException {
 		System.out.println("exportSelectedNote");
+
+		File exportFilePath = fileChooser.getSelectedFile();
+		FileWriter fileWriter = new FileWriter(exportFilePath);
+		FileNameExtensionFilter fileFilter = (FileNameExtensionFilter)fileChooser.getFileFilter();
+		Note selectedNote = this.noteList.get(selectedIndex);
+
+		if (fileFilter.getDescription().equals("HTML")) {
+			this.exportSelectedToHTML(fileWriter, selectedNote);
+		}
+		else if (fileFilter.getDescription().equals("Text")) {
+			this.exportSelectedToText(fileWriter, selectedNote);
+		}
+
+		fileWriter.close();
 	}
 
 	public void exportAllNotes() throws IOException, JSONException {
@@ -123,11 +137,35 @@ public class Model {
 		System.out.println("exportToHTML");
 	}
 
+	public void exportSelectedToHTML(final FileWriter fileWriter, final Note selectedNote) throws IOException {
+		String[] noteLines = selectedNote.getContent().split("\n");
+
+		fileWriter.write("<!DOCTYPE HTML>");
+		fileWriter.write("\n<html>");
+		fileWriter.write("\n\t<body>");
+
+		for (String line : noteLines) {
+			fileWriter.write(String.format("\n\t\t<h1>%s %s</h1>",
+											selectedNote.getDateCreated().toLocalDate(),
+											selectedNote.getDateCreated().toLocalTime()));
+			fileWriter.write("\n\t\t<p>");
+			fileWriter.write(String.format("\n\t\t\t%s", line));
+			fileWriter.write("\n\t\t</p>");
+		}
+
+		fileWriter.write("\n\t</body>");
+		fileWriter.write("\n</html>");
+	}
+
 	public void exportToMarkdown() throws IOException {
 		System.out.println("exportToMarkdown");
 	}
 
 	public void exportToText() throws IOException {
 		System.out.println("exportToText");
+	}
+
+	public void exportSelectedToText(final FileWriter fileWriter, final Note selectedNote) throws IOException {
+
 	}
 } // End Model
