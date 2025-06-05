@@ -193,10 +193,16 @@ public class Model {
 	}
 
 	public void exportAllToText(final FileWriter fileWriter) throws IOException {
-		System.out.println("exportToText");
+		System.out.println("exportAllToText");
+		for (Note note : noteList) {
+			fileWriter.write(String.format("%s\n", note.getDateCreated().toString()));
+			fileWriter.write(String.format("%s\n\n", note.getContent()));
+		}
 	}
 
 	public void exportSelectedToText(final FileWriter fileWriter, final Note selectedNote) throws IOException {
-
+		System.out.println("exportSelectedToText");
+		fileWriter.write(String.format("%s\n", selectedNote.getDateCreated().toString()));
+		fileWriter.write(selectedNote.getContent());
 	}
 } // End Model
