@@ -129,6 +129,23 @@ public class Controller {
 		public void actionPerformed(ActionEvent event) {
 			System.out.println("Export all listener");
 			JFileChooser exportWindow = view.createExportAllWindow();
+
+			try {
+				model.exportAllNotes(exportWindow);
+			}
+			catch(IOException ioEx) {
+				System.out.println(ioEx.getMessage());
+				// Call view to display IO error message
+			}
+			catch(JSONException jsonEx) {
+				System.out.println(jsonEx.getMessage());
+				// Call view to display JSON error message
+			}
+			catch(Exception ex) {
+				System.out.println("Error");
+				System.out.println(ex.getMessage());
+				// Call view to display generic error message
+			}
 		}
 	}
 
