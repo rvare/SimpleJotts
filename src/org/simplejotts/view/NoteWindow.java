@@ -48,7 +48,7 @@ public class NoteWindow extends JDialog {
 		// this.getContentPane().add(BorderLayout.NORTH, formatPanel);
 
 		// Setting variables
-		this.cancelFlag = false;
+		this.cancelFlag = true;
 
 		// Create editor
 		JPanel editorPanel = new JPanel();
@@ -64,11 +64,13 @@ public class NoteWindow extends JDialog {
 		// Create buttons
 		JPanel buttonPanel = new JPanel();
 
+		// Save button
 		this.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
 		this.saveButton = new JButton("Save");
 		this.saveButton.addActionListener(new SaveButtonListener());
 		buttonPanel.add(this.saveButton);
 
+		// Cancel button
 		this.cancelButton = new JButton("Cancel");
 		this.cancelButton.addActionListener(new CancelButtonListener());
 		buttonPanel.add(this.cancelButton);
@@ -107,6 +109,7 @@ public class NoteWindow extends JDialog {
 		@Override
 		public void actionPerformed(ActionEvent event) {
 			System.out.println("Save button hit");
+			cancelFlag = false;
 			dispose();
 		}
 	}
