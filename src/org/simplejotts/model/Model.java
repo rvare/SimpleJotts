@@ -22,25 +22,35 @@ public class Model {
 	private LinkedList<Note> noteList;
 	private boolean dirtyFlag;
 	private int curr_id_number;
+	private File notesFile;
 
 	// Constants
-	private static String FILE_PATH = "../../test.json";
+	private static String FILE_PATH = "../simple_jotts_notes.json";
 
 	public Model() {
 		this.noteList = new LinkedList<Note>();
 		this.dirtyFlag = false;
 
 		// Open file and get contents
-		String noteFileContents;
+		String noteFileContents = " ";
 		try {
+			this.notesFile = new File(FILE_PATH);
 			noteFileContents = Files.readString(Paths.get(FILE_PATH));
 			System.out.println(noteFileContents);
 		}
+		catch(IOException ioEx) {
+			System.out.println(ioEx.getMessage());
+		}
 		catch(Exception exp) {
 			System.out.println(exp.getMessage());
-			noteFileContents = " ";
 		}
 		// String noteFileContents = this.openDataFile();
+
+		System.out.println(!this.notesFile.exists() && this.notesFile.isDirectory());
+		if (!this.notesFile.exists() && !this.notesFile.isDirectory()) {
+			System.out.println("DNE");
+			return;
+		}
 
 		JSONObject jsonObject = new JSONObject(noteFileContents);
 		System.out.println(jsonObject);
@@ -79,8 +89,27 @@ public class Model {
 		System.out.println("openDateFile");
 	}
 
-	public void saveDataFile() {
+	public void saveDataFile() throws IOException, JSONException {
 		System.out.println("saveDataFile");
+		StringBuilder jsonContents = createJsonArray();
+
+		FileWriter fileWriter = new FileWriter(this.FILE_PATH);
+		fileWriter.write(jsonContents.toString());
+		fileWriter.close();
+	}
+
+	public StringBuilder createJsonArray() {
+		JSONArray jsonArr = new JSONArray();
+		for (Note note : this.noteList) {
+			jsonArr.put(new JSONObject().put("date_createde", note.getDateCreated())
+										.put("date_modified", note.getDateModified())
+										.put("content", note.getContent()));
+		}
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("version", 1.0);
+		jsonObject.put("notes", jsonArr);
+
+		return new StringBuilder(jsonObject.toString());
 	}
 
 	public void newNote(String noteContent) {

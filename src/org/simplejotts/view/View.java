@@ -218,4 +218,7 @@ public class View extends JFrame {
 		noteList.addMouseListener(ma);
 	}
 
+	public void addMainWindowCloseListener(WindowAdapter closeListener) {
+		this.addWindowListener(closeListener);
+	}
 } // End View class

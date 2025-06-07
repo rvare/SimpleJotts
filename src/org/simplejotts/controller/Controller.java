@@ -29,6 +29,8 @@ public class Controller {
 		this.model = model;
 		this.view = view;
 
+		this.view.addMainWindowCloseListener(new MainWindowCloseListener());
+
 		// Create menu bar listeners
 		this.view.addAboutDialogListener(new AboutDialogListener());
 		this.view.addDocumentaitonDialogListener(new DocumentaitonDialogListener());
@@ -53,7 +55,6 @@ public class Controller {
 		}
 
 		this.view.addToListModel(ll);
-
 	}
 
 	// Operations
@@ -212,6 +213,24 @@ public class Controller {
 				if (noteWindow.getCancelFlag()) { return; }
 				System.out.println("Continues in DoubleClickListener");
 				editOperation(noteWindow.getTextEditorContent());
+			}
+		}
+	}
+
+	private class MainWindowCloseListener extends WindowAdapter {
+		public void windowClosing(java.awt.event.WindowEvent e) {
+			System.out.println("Wow, it's closing");
+			try {
+				model.saveDataFile();
+			}
+			catch(IOException ioEx) {
+				System.out.println(ioEx.getMessage());
+			}
+			catch(JSONException jsonEx) {
+				System.out.println(jsonEx.getMessage());
+			}
+			catch(Exception ex) {
+				System.out.println(ex.getMessage());
 			}
 		}
 	}
