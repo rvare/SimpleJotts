@@ -8,8 +8,9 @@ public class ListMenuItem {
 	private LocalDateTime dateCreated;
 
 	public ListMenuItem(final String noteContent, final LocalDateTime dateCreated) {
-		if (noteContent.length() > 70) {
-			this.preview = noteContent.substring(0, 70).concat("...");
+		System.out.println("ListMenuItem constructor");
+		if (noteContent.length() > 50) {
+			this.preview = noteContent.replace('\n', ' ').substring(0, 50).concat("...");
 		}
 		else {
 			this.preview = noteContent;
@@ -19,6 +20,6 @@ public class ListMenuItem {
 
 	@Override
 	public String toString() {
-		return String.format("%10s    %-75s", this.dateCreated.toLocalDate(), this.preview);
+		return String.format("%10s    %-55s", this.dateCreated.toLocalDate(), this.preview);
 	}
 }
