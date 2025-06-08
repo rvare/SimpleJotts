@@ -3,7 +3,6 @@ package org.simplejotts.model;
 import java.time.LocalDateTime;
 
 public class Note {
-	private int id;
 	private String content;
 	private LocalDateTime dateCreated;
 	private LocalDateTime dateModified;
@@ -13,26 +12,21 @@ public class Note {
 		this.dateModified = LocalDateTime.now();
 	}
 
-	public Note(final int id, final String content) {
-		this.id = id;
+	public Note(final String content) {
+		System.out.println("Single called");
 		this.content = content;
 		this.dateCreated = LocalDateTime.now();
-		this.dateCreated = LocalDateTime.now();
+		this.dateModified = LocalDateTime.now();
 	}
 
-	public Note(final int id, final String content, final LocalDateTime dateCreated, final LocalDateTime dateModified) {
+	public Note(final String content, final LocalDateTime dateCreated, final LocalDateTime dateModified) {
 		System.out.println("Called");
-		this.id = id;
 		this.content = content;
 		this.dateCreated = dateCreated;
 		this.dateModified = dateModified;
 	}
 
 	// Getters
-	public int getId() {
-		return this.id;
-	}
-
 	public String getContent() {
 		return this.content;
 	}
@@ -46,11 +40,8 @@ public class Note {
 	}
 
 	// Setters
-	public void setId(final int id) {
-		this.id = id;
-	}
-
 	public void setContent(final String content) {
+		this.dateModified = LocalDateTime.now();
 		this.content = content;
 	}
 
@@ -58,8 +49,12 @@ public class Note {
 		this.dateCreated = dateCreated;
 	}
 
+	public void setDateModified(final LocalDateTime dateModified) {
+		this.dateModified = dateModified;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("id: %d\ndateCreated: %s\ndateModified: %s\ncontent:\n%s\n", id, dateCreated, dateModified, content);
+		return String.format("dateCreated: %s\ndateModified: %s\ncontent:\n%s\n", dateCreated, dateModified, content);
 	}
-}
+} // End Note

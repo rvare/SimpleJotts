@@ -21,7 +21,6 @@ import org.simplejotts.model.Note;
 public class Model {
 	private LinkedList<Note> noteList;
 	private boolean dirtyFlag;
-	private int curr_id_number;
 	private File notesFile;
 
 	// Constants
@@ -54,7 +53,6 @@ public class Model {
 
 		JSONObject jsonObject = new JSONObject(noteFileContents);
 		System.out.println(jsonObject);
-		this.curr_id_number = jsonObject.getInt("id_accumulator");
 		JSONArray noteArray = new JSONArray(jsonObject.get("notes").toString());
 		System.out.println(noteArray);
 
@@ -62,12 +60,11 @@ public class Model {
 		while (iter.hasNext()) {
 			JSONObject obj = new JSONObject(iter.next().toString());
 			System.out.println(obj);
-			int id = obj.getInt("id");
 			String content = obj.getString("content");
 			LocalDateTime dateCreated = LocalDateTime.parse(obj.getString("date_created"));
 			LocalDateTime dateModified = LocalDateTime.parse(obj.getString("date_modified"));
 
-			Note note = new Note(id, content, dateCreated, dateModified);
+			Note note = new Note(content, dateCreated, dateModified);
 			System.out.println(note);
 			this.noteList.add(note);
 		}
@@ -91,17 +88,17 @@ public class Model {
 
 	public void saveDataFile() throws IOException, JSONException {
 		System.out.println("saveDataFile");
-		StringBuilder jsonContents = createJsonArray();
+		StringBuilder jsonContents = createJsonObject();
 
 		FileWriter fileWriter = new FileWriter(this.FILE_PATH);
 		fileWriter.write(jsonContents.toString());
 		fileWriter.close();
 	}
 
-	public StringBuilder createJsonArray() {
+	public StringBuilder createJsonObject() {
 		JSONArray jsonArr = new JSONArray();
 		for (Note note : this.noteList) {
-			jsonArr.put(new JSONObject().put("date_createde", note.getDateCreated())
+			jsonArr.put(new JSONObject().put("date_created", note.getDateCreated())
 										.put("date_modified", note.getDateModified())
 										.put("content", note.getContent()));
 		}
@@ -114,11 +111,8 @@ public class Model {
 
 	public void newNote(String noteContent) {
 		System.out.println("newNote");
-		int id = this.curr_id_number++;
-		LocalDateTime dateCreated = LocalDateTime.now();
-		LocalDateTime dateModified = LocalDateTime.now();
 
-		Note note = new Note(id, noteContent, dateCreated, dateModified);
+		Note note = new Note(noteContent); // This constructor also creates date created and modified.
 		System.out.println(note);
 		this.noteList.add(note);
 		System.out.println(this.noteList);
