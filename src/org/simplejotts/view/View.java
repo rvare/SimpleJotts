@@ -91,6 +91,7 @@ public class View extends JFrame {
 		// Create JList
 		this.listModel = new DefaultListModel<ListMenuItem>();
 		this.noteList = new JList<ListMenuItem>();
+		this.noteList.setFont(new Font("Courier New", Font.PLAIN, 12));
 		this.noteList.setModel(this.listModel);
 		JPanel listPanel = new JPanel();
 		// listPanel.add(new JScrollPane(this.noteList)); // Here until we know for certain we don't need it

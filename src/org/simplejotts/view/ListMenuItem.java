@@ -6,11 +6,12 @@ import java.time.LocalDateTime;
 public class ListMenuItem {
 	private String preview;
 	private LocalDateTime dateCreated;
+	private static short MAX_LENGTH = 35;
 
 	public ListMenuItem(final String noteContent, final LocalDateTime dateCreated) {
 		System.out.println("ListMenuItem constructor");
-		if (noteContent.length() > 50) {
-			this.preview = noteContent.replace('\n', ' ').substring(0, 50).concat("...");
+		if (noteContent.length() > MAX_LENGTH) {
+			this.preview = noteContent.replace('\n', ' ').substring(0, MAX_LENGTH).concat("...");
 		}
 		else {
 			this.preview = noteContent;
@@ -20,6 +21,6 @@ public class ListMenuItem {
 
 	@Override
 	public String toString() {
-		return String.format("%10s    %-55s", this.dateCreated.toLocalDate(), this.preview);
+		return String.format("%10s  %-35s", this.dateCreated.toLocalDate(), this.preview);
 	}
 }

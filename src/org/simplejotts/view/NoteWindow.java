@@ -32,6 +32,9 @@ public class NoteWindow extends JDialog {
 	private static short DEFAULT_WIDTH = 500;
 	private static short DEFAULT_HEIGHT = 500;
 
+	private static short DEFAULT_EDITOR_ROWS = 24;
+	private static short DEFAULT_EDITOR_COLS = 50;
+
 	public NoteWindow(String noteContent) {
 		System.out.println("NoteWindow constructor");
 		// Create format buttons
@@ -53,7 +56,9 @@ public class NoteWindow extends JDialog {
 		// Create editor
 		JPanel editorPanel = new JPanel();
 		this.getContentPane().add(BorderLayout.CENTER, editorPanel);
-		this.editorArea = noteContent == null ? new JTextArea(20, 40) : new JTextArea(noteContent, 20, 40);
+		this.editorArea = noteContent == null ? new JTextArea(DEFAULT_EDITOR_ROWS, DEFAULT_EDITOR_COLS) : new JTextArea(noteContent, DEFAULT_EDITOR_ROWS, DEFAULT_EDITOR_COLS);
+		this.editorArea.setFont(new Font("Courier New", Font.PLAIN, 12));
+		System.out.printf("%s", this.editorArea.getFont().toString());
 		// this.editorArea = new JTextPane();
 		this.editorArea.setLineWrap(true);
 		this.editorArea.setFont(editorArea.getFont().deriveFont(14f));
