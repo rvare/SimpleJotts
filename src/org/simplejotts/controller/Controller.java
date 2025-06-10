@@ -111,16 +111,15 @@ public class Controller {
 			}
 			catch(IOException ioEx) {
 				System.out.println(ioEx.getMessage());
-				// Call view to display IO error message
+				view.createErrorWindow("Could not save file"); // Call view to display IO error message
 			}
 			catch(JSONException jsonEx) {
 				System.out.println(jsonEx.getMessage());
-				// Call view to display JSON error message
+				view.createErrorWindow("Could not save file, JSON issue"); // Call view to display JSON error message
 			}
 			catch(Exception ex) {
-				System.out.println("Error");
 				System.out.println(ex.getMessage());
-				// Call view to display generic error message
+				view.createErrorWindow("Something unexpected happened"); // Call view to display generic error message
 			}
 		}
 	}
@@ -136,16 +135,15 @@ public class Controller {
 			}
 			catch(IOException ioEx) {
 				System.out.println(ioEx.getMessage());
-				// Call view to display IO error message
+				view.createErrorWindow("Could not save file"); // Call view to display IO error message
 			}
 			catch(JSONException jsonEx) {
 				System.out.println(jsonEx.getMessage());
-				// Call view to display JSON error message
+				view.createErrorWindow("Could not save file, JSON issue"); // Call view to display JSON error message
 			}
 			catch(Exception ex) {
-				System.out.println("Error");
 				System.out.println(ex.getMessage());
-				// Call view to display generic error message
+				view.createErrorWindow("Something unexpected happened"); // Call view to display generic error message
 			}
 		}
 	}
@@ -188,10 +186,10 @@ public class Controller {
 		@Override
 		public void valueChanged(ListSelectionEvent listEvent) {
 			if (!listEvent.getValueIsAdjusting()) {
-				ListMenuItem item = view.getNoteList().getSelectedValue();
+				ListMenuItem item = view.getNoteList().getSelectedValue(); // Gets the selected list item
 				if (item == null) { return; }
 				selectedItem = item;
-				selectedItemIndex = view.getNoteList().getLeadSelectionIndex();
+				selectedItemIndex = view.getNoteList().getLeadSelectionIndex(); // Gets the index of the selected item
 				System.out.println(item);
 				System.out.println(selectedItemIndex);
 			}
@@ -225,12 +223,15 @@ public class Controller {
 			}
 			catch(IOException ioEx) {
 				System.out.println(ioEx.getMessage());
+				view.createErrorWindow("Could not save file"); // Call view to display IO error message
 			}
 			catch(JSONException jsonEx) {
 				System.out.println(jsonEx.getMessage());
+				view.createErrorWindow("Could not save file, JSON issue"); // Call view to display JSON error message
 			}
 			catch(Exception ex) {
 				System.out.println(ex.getMessage());
+				view.createErrorWindow("Something unexpected happened"); // Call view to display generic error message
 			}
 		}
 	}

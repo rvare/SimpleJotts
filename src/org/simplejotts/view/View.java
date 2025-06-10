@@ -184,6 +184,10 @@ public class View extends JFrame {
 		for (ListMenuItem item : ll) { this.listModel.addElement(item); }
 	}
 
+	public void createErrorWindow(String message) {
+		JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+	}
+
 	// Add Listeners
 	public void addNewButtonListener(ActionListener newButtonListener) {
 		this.newButton.addActionListener(newButtonListener);

@@ -111,7 +111,6 @@ public class Model {
 
 	public void newNote(String noteContent) {
 		System.out.println("newNote");
-
 		Note note = new Note(noteContent); // This constructor also creates date created and modified.
 		System.out.println(note);
 		this.noteList.add(note);
@@ -120,7 +119,16 @@ public class Model {
 
 	public void deleteNote(final int index) {
 		System.out.println("deleteNote");
-		this.noteList.remove(index);
+		try {
+			this.noteList.remove(index);
+		}
+		catch(IndexOutOfBoundsException iobEx) {
+			System.out.println("Out of bounds");
+			System.out.println(iobEx.getMessage());
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
 	}
 
 	public void editNote(final int index, final String newContent) {
