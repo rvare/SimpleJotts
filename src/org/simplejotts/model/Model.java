@@ -35,7 +35,6 @@ public class Model {
 		try {
 			this.notesFile = new File(FILE_PATH);
 			noteFileContents = Files.readString(Paths.get(FILE_PATH));
-			System.out.println(noteFileContents);
 		}
 		catch(IOException ioEx) {
 			System.out.println(ioEx.getMessage());
@@ -45,36 +44,29 @@ public class Model {
 		}
 		// String noteFileContents = this.openDataFile();
 
-		System.out.println(!this.notesFile.exists() && this.notesFile.isDirectory());
 		if (!this.notesFile.exists() && !this.notesFile.isDirectory()) {
-			System.out.println("DNE");
+			// Add error message?
 			return;
 		}
 
 		JSONObject jsonObject = new JSONObject(noteFileContents);
-		System.out.println(jsonObject);
 		JSONArray noteArray = new JSONArray(jsonObject.get("notes").toString());
-		System.out.println(noteArray);
 
 		Iterator iter = noteArray.iterator();
 		while (iter.hasNext()) {
 			JSONObject obj = new JSONObject(iter.next().toString());
-			System.out.println(obj);
 			String content = obj.getString("content");
 			LocalDateTime dateCreated = LocalDateTime.parse(obj.getString("date_created"));
 			LocalDateTime dateModified = LocalDateTime.parse(obj.getString("date_modified"));
 
 			Note note = new Note(content, dateCreated, dateModified);
-			System.out.println(note);
 			this.noteList.add(note);
 		}
 
-		System.out.println(this.noteList);
 	} // End Model constructor
 
 	// Getters
 	public void getNote() {
-		System.out.println("getNote");
 	}
 
 	public LinkedList<Note> getList() {
@@ -83,11 +75,9 @@ public class Model {
 
 	// Operations
 	public void openDataFile() throws IOException {
-		System.out.println("openDateFile");
 	}
 
 	public void saveDataFile() throws IOException, JSONException {
-		System.out.println("saveDataFile");
 		StringBuilder jsonContents = createJsonObject();
 
 		FileWriter fileWriter = new FileWriter(this.FILE_PATH);
@@ -110,20 +100,15 @@ public class Model {
 	}
 
 	public void newNote(String noteContent) {
-		System.out.println("newNote");
 		Note note = new Note(noteContent); // This constructor also creates date created and modified.
-		System.out.println(note);
 		this.noteList.add(note);
-		System.out.println(this.noteList);
 	}
 
 	public void deleteNote(final int index) {
-		System.out.println("deleteNote");
 		try {
 			this.noteList.remove(index);
 		}
 		catch(IndexOutOfBoundsException iobEx) {
-			System.out.println("Out of bounds");
 			System.out.println(iobEx.getMessage());
 		}
 		catch(Exception ex) {
@@ -132,18 +117,15 @@ public class Model {
 	}
 
 	public void editNote(final int index, final String newContent) {
-		System.out.println("editNote");
 		Note note = this.noteList.get(index);
 		note.setContent(newContent);
 	}
 
 	public void saveNotes() {
-		System.out.println("saveNote");
 	}
 
 	// Exporting
 	public void exportSelectedNote(final JFileChooser fileChooser, final int selectedIndex) throws IOException, JSONException {
-		System.out.println("exportSelectedNote");
 
 		File exportFilePath = fileChooser.getSelectedFile();
 		FileWriter fileWriter = new FileWriter(exportFilePath);
@@ -161,8 +143,6 @@ public class Model {
 	}
 
 	public void exportAllNotes(final JFileChooser fileChooser) throws IOException, JSONException {
-		System.out.println("exportAllNotes");
-
 		File exportedFilePath = fileChooser.getSelectedFile();
 		FileWriter fileWriter = new FileWriter(exportedFilePath);
 
@@ -178,7 +158,6 @@ public class Model {
 	}
 
 	public void exportAllToHTML(final FileWriter fileWriter) throws IOException {
-		System.out.println("exportAllToHTML");
 		fileWriter.write("<!DOCTYPE HTML>");
 		fileWriter.write("\n<html>");
 		fileWriter.write("\n\t<body>");
@@ -220,11 +199,9 @@ public class Model {
 	}
 
 	public void exportToMarkdown() throws IOException {
-		System.out.println("exportToMarkdown");
 	}
 
 	public void exportAllToText(final FileWriter fileWriter) throws IOException {
-		System.out.println("exportAllToText");
 		for (Note note : noteList) {
 			fileWriter.write(String.format("%s\n", note.getDateCreated().toString()));
 			fileWriter.write(String.format("%s\n\n", note.getContent()));
@@ -232,7 +209,6 @@ public class Model {
 	}
 
 	public void exportSelectedToText(final FileWriter fileWriter, final Note selectedNote) throws IOException {
-		System.out.println("exportSelectedToText");
 		fileWriter.write(String.format("%s\n", selectedNote.getDateCreated().toString()));
 		fileWriter.write(selectedNote.getContent());
 	}

@@ -63,10 +63,8 @@ public class View extends JFrame {
 		// Create Help menu and its items
 		JMenu helpMenu = new JMenu("Help");
 		this.docOption = new JMenuItem("Documentation");
-		// this.docOption.addActionListener(new DocumentaitonDialogListener());
 		helpMenu.add(this.docOption);
 		this.aboutOption = new JMenuItem("About");
-		// this.aboutOption.addActionListener(new AboutDialogListener());
 		helpMenu.add(this.aboutOption);
 
 		// Add all menu items to menu bar
@@ -76,7 +74,6 @@ public class View extends JFrame {
 
 		// Create Buttons
 		this.newButton = new JButton("New");
-		// this.newButton.addActionListener(new newButtonListener());
 		this.deleteButton = new JButton("Delete");
 		// this.settingsButton = new JButton("Settings");
 		// this.settingsButton.setIcon(UIManager.getIcon("FileView.fileIcon"));
@@ -85,7 +82,6 @@ public class View extends JFrame {
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.add(this.newButton);
 		buttonPanel.add(this.deleteButton);
-		// buttonPanel.add(this.settingsButton);
 		this.getContentPane().add(BorderLayout.NORTH, buttonPanel);
 
 		// Create JList
@@ -96,7 +92,6 @@ public class View extends JFrame {
 		JPanel listPanel = new JPanel();
 		// listPanel.add(new JScrollPane(this.noteList)); // Here until we know for certain we don't need it
 		this.getContentPane().add(BorderLayout.CENTER, new JScrollPane(this.noteList));
-		// this.getContentPane().add(BorderLayout.CENTER, listPanel);
 
 		// Create the frame
 		this.setTitle(this.WINDOW_TITLE);
@@ -169,20 +164,16 @@ public class View extends JFrame {
 		return fileExporter;
 	}
 
-	public void addToListModel(final LinkedList<ListMenuItem> ll) {
-		System.out.println("Here");
-		System.out.println(ll);
+	public void addToListModel(final LinkedList<ListMenuItem> linkedList) {
 		listModel.clear();
-		for (ListMenuItem i : ll) {
-			this.listModel.addElement(i);
-		}
+		for (ListMenuItem i : linkedList) { this.listModel.addElement(i); }
 	}
 
-	public void refreshListModel(final LinkedList<ListMenuItem> ll) {
+	public void refreshListModel(final LinkedList<ListMenuItem> linkedList) {
 		this.listModel.removeAllElements();
 		this.listModel.clear();
 
-		for (ListMenuItem item : ll) { this.listModel.addElement(item); }
+		for (ListMenuItem item : linkedList) { this.listModel.addElement(item); }
 	}
 
 	public void createErrorWindow(String message) {
@@ -192,7 +183,6 @@ public class View extends JFrame {
 	// Add Listeners
 	public void addNewButtonListener(ActionListener newButtonListener) {
 		this.newButton.addActionListener(newButtonListener);
-		System.out.println("Does this still work?");
 	}
 
 	public void addDeleteButtonListener(ActionListener deleteButtonListener) {

@@ -60,41 +60,32 @@ public class Controller {
 	// Operations
 	public void refreshViewListModel() {
 		LinkedList<Note> noteList = this.model.getList();
-		LinkedList<ListMenuItem> ll = new LinkedList<ListMenuItem>();
-		for (Note n : noteList) {
-			ll.add(new ListMenuItem(n.getContent(), n.getDateCreated()));
+		LinkedList<ListMenuItem> linkedList = new LinkedList<ListMenuItem>();
+		for (Note note : noteList) {
+			linkedList.add(new ListMenuItem(note.getContent(), note.getDateCreated()));
 		}
-		System.out.println(ll);
-		this.view.refreshListModel(ll);
+		this.view.refreshListModel(linkedList);
 	}
 
 	private void newOperation() {
-		System.out.println("newOperation");
 		NoteWindow noteWindow = this.view.createNoteWindow();
 		noteWindow.setVisible(true);
-		System.out.println("Execution continues");
 
 		if (noteWindow.getCancelFlag()) { return; }
 
-		// int id = assign id
 		String content = noteWindow.getTextEditorContent();
-		System.out.println(String.format("Note contents: %s", content));
 		// LocalDateTime dateCreated = LocalDateTime.now();
 		// LocalDateTime dateModified = LocalDateTime.now();
-		// System.out.println(dateCreated);
-		// System.out.println(dateModified);
 		this.model.newNote(content);
 		this.refreshViewListModel();
 	}
 
 	private void editOperation(String newContent) {
-		System.out.println("Edit operaiton");
 		this.model.editNote(selectedItemIndex, newContent);
 		this.refreshViewListModel();
 	}
 
 	private void deleteOperation() {
-		System.out.println("Delete operaiton");
 		this.model.deleteNote(selectedItemIndex);
 		this.refreshViewListModel();
 	}
@@ -103,7 +94,6 @@ public class Controller {
 	private class ExportSelectedListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("Export listener");
 			JFileChooser exportWindow = view.createExportSelectedWindow();
 
 			try {
@@ -127,7 +117,6 @@ public class Controller {
 	private class ExportAllListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("Export all listener");
 			JFileChooser exportWindow = view.createExportAllWindow();
 
 			try {
@@ -151,7 +140,6 @@ public class Controller {
 	private class DocumentaitonDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("Doc listener");
 			view.displayDocumentationDialogWindow();
 		}
 	}
@@ -159,7 +147,6 @@ public class Controller {
 	private class AboutDialogListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("About dialog listener");
 			view.displayAboutDialogWindow();
 		}
 	}
@@ -168,7 +155,6 @@ public class Controller {
 	private class newButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("New button hit");
 			newOperation();
 		}
 	}
@@ -176,7 +162,6 @@ public class Controller {
 	private class deleteButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("Delete button hit");
 			deleteOperation();
 		}
 	}
@@ -190,8 +175,6 @@ public class Controller {
 				if (item == null) { return; }
 				selectedItem = item;
 				selectedItemIndex = view.getNoteList().getLeadSelectionIndex(); // Gets the index of the selected item
-				System.out.println(item);
-				System.out.println(selectedItemIndex);
 			}
 		}
 	}
@@ -200,24 +183,19 @@ public class Controller {
 	private class DoubleClickListener extends MouseAdapter {
 		@Override
 		public void mouseClicked(MouseEvent evt) {
-			System.out.println("Single clicked");
 			if (evt.getClickCount() == 2) {
-				System.out.println("Double click");
-				LinkedList<Note> ll = model.getList();
-				Note n = ll.get(selectedItemIndex);
-				System.out.println(n);
-				NoteWindow noteWindow = view.createNoteWindow(n.getContent());
+				LinkedList<Note> linkedList = model.getList();
+				Note note = linkedList.get(selectedItemIndex);
+				NoteWindow noteWindow = view.createNoteWindow(note.getContent());
 				noteWindow.setVisible(true);
 				if (noteWindow.getCancelFlag()) { return; }
-				System.out.println("Continues in DoubleClickListener");
 				editOperation(noteWindow.getTextEditorContent());
 			}
 		}
 	}
 
 	private class MainWindowCloseListener extends WindowAdapter {
-		public void windowClosing(java.awt.event.WindowEvent e) {
-			System.out.println("Wow, it's closing");
+		public void windowClosing(java.awt.event.WindowEvent windowEvent) {
 			try {
 				model.saveDataFile();
 			}

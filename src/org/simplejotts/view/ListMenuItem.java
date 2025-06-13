@@ -9,7 +9,6 @@ public class ListMenuItem {
 	private static short MAX_LENGTH = 35;
 
 	public ListMenuItem(final String noteContent, final LocalDateTime dateCreated) {
-		System.out.println("ListMenuItem constructor");
 		if (noteContent.length() > MAX_LENGTH) {
 			this.preview = noteContent.replace('\n', ' ').substring(0, MAX_LENGTH).concat("...");
 		}
