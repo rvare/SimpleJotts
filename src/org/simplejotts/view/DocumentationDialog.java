@@ -9,7 +9,6 @@ import java.util.*;
 
 public class DocumentationDialog extends JDialog {
 	public DocumentationDialog() {
-		System.out.println("Doc Dialog");
 		this.setTitle("Documentation");
 
 		String docContent = """

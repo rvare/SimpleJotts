@@ -6,11 +6,8 @@ import org.simplejotts.controller.Controller;
 
 public class SimpleJottsMain {
 	public static void main(String[] args) {
-		System.out.println("Test");
 		View view = new View();
-		// view.showMainFrame();
 		Model model = new Model();
-		// model.newNote("This is a note");
 		Controller controller = new Controller(model, view);
 		view.showMainFrame();
 	}

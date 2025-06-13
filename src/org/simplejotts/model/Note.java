@@ -13,14 +13,12 @@ public class Note {
 	}
 
 	public Note(final String content) {
-		System.out.println("Single called");
 		this.content = content;
 		this.dateCreated = LocalDateTime.now();
 		this.dateModified = LocalDateTime.now();
 	}
 
 	public Note(final String content, final LocalDateTime dateCreated, final LocalDateTime dateModified) {
-		System.out.println("Called");
 		this.content = content;
 		this.dateCreated = dateCreated;
 		this.dateModified = dateModified;

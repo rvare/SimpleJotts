@@ -36,7 +36,6 @@ public class NoteWindow extends JDialog {
 	private static short DEFAULT_EDITOR_COLS = 50;
 
 	public NoteWindow(String noteContent) {
-		System.out.println("NoteWindow constructor");
 		// Create format buttons
 		// Leaving these here for now when I get a chance to implement them.
 		// JPanel formatPanel = new JPanel();
@@ -56,9 +55,9 @@ public class NoteWindow extends JDialog {
 		// Create editor
 		JPanel editorPanel = new JPanel();
 		this.getContentPane().add(BorderLayout.CENTER, editorPanel);
-		this.editorArea = noteContent == null ? new JTextArea(DEFAULT_EDITOR_ROWS, DEFAULT_EDITOR_COLS) : new JTextArea(noteContent, DEFAULT_EDITOR_ROWS, DEFAULT_EDITOR_COLS);
+		this.editorArea = noteContent == null ? new JTextArea(DEFAULT_EDITOR_ROWS, DEFAULT_EDITOR_COLS)
+											  : new JTextArea(noteContent, DEFAULT_EDITOR_ROWS, DEFAULT_EDITOR_COLS);
 		this.editorArea.setFont(new Font("Courier New", Font.PLAIN, 12));
-		System.out.printf("%s", this.editorArea.getFont().toString());
 		// this.editorArea = new JTextPane();
 		this.editorArea.setLineWrap(true);
 		this.editorArea.setFont(editorArea.getFont().deriveFont(14f));
@@ -104,7 +103,6 @@ public class NoteWindow extends JDialog {
 	private class CancelButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("Cancel button hit");
 			cancelFlag = true;
 			dispose();
 		}
@@ -113,7 +111,6 @@ public class NoteWindow extends JDialog {
 	private class SaveButtonListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent event) {
-			System.out.println("Save button hit");
 			cancelFlag = false;
 			dispose();
 		}
