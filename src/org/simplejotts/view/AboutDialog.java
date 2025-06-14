@@ -33,7 +33,7 @@ public class AboutDialog extends JDialog {
 		JLabel applicationTitle = new JLabel("Simple Jotts");
 		applicationTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
 
-		JLabel authorAndCopyrightLabel = new JLabel("(c) 2025 Richard Varela", SwingConstants.CENTER);
+		JLabel authorAndCopyrightLabel = new JLabel("Copyright 2025 Richard Varela", SwingConstants.CENTER);
 		authorAndCopyrightLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 
 		JLabel versionNumber = new JLabel("v1.0", SwingConstants.CENTER);
