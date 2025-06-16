@@ -20,7 +20,7 @@ The repository can be in any folder anywhere you like in your system.
 
 # Build Guide
 
-Before you can compile and build the project, you will need the package [org.json}(https://github.com/stleary/JSON-java) from strealy on GitHub. Put this package in a folder called `lib` and rename the jar file `json-java.jar`.
+Before you can compile and build the project, you will need the package [org.json](https://github.com/stleary/JSON-java) from strealy on GitHub. Put this package in a folder called `lib` and rename the jar file `json-java.jar`.
 
 To build the project, run the following in the `src` folder:
 
