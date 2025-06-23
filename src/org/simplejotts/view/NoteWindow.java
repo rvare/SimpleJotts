@@ -82,16 +82,12 @@ public class NoteWindow extends JDialog {
 		editorPanel.add(scroller);
 
 		// Create buttons
+		// Create button panel
 		JPanel buttonPanel = new JPanel();
-
-		// Save button
 		this.getContentPane().add(BorderLayout.SOUTH, buttonPanel);
-		this.saveButton = new JButton("Save");
-		this.saveButton.addActionListener(new SaveButtonListener());
-		buttonPanel.add(this.saveButton);
 
 		// Cancel button
-		this.cancelButton = new JButton("Cancel");
+		this.cancelButton = new JButton("Discard");
 		this.cancelButton.addActionListener(new CancelButtonListener());
 		buttonPanel.add(this.cancelButton);
 
@@ -100,6 +96,7 @@ public class NoteWindow extends JDialog {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setModalityType(Dialog.DEFAULT_MODALITY_TYPE);
 		this.setResizable(false);
+		this.addWindowListener(new NoteWindowCloseHandler());
 	} // End construction
 
 	public NoteWindow() {
@@ -124,9 +121,8 @@ public class NoteWindow extends JDialog {
 		}
 	}
 
-	private class SaveButtonListener implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent event) {
+	private class NoteWindowCloseHandler extends WindowAdapter {
+		public void windowClosing(WindowEvent e) {
 			cancelFlag = false;
 			dispose();
 		}
