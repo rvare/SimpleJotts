@@ -16,12 +16,11 @@ If not, see <https://www.gnu.org/licenses/>.
 
 package org.simplejotts.view;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import java.io.*;
-import java.util.*;
+import java.awt.BorderLayout;
+import java.awt.Dialog;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class DocumentationDialog extends JDialog {
 	public DocumentationDialog() {
