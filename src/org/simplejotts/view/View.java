@@ -16,14 +16,24 @@ If not, see <https://www.gnu.org/licenses/>.
 
 package org.simplejotts.view;
 
-import java.util.*;
 import java.util.LinkedList;
 import java.util.Arrays;
-import java.io.*;
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import javax.swing.event.*;
+import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.WindowAdapter;
+import javax.swing.JFrame;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JButton;
+import javax.swing.JList;
+import javax.swing.DefaultListModel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
