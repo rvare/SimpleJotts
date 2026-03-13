@@ -45,7 +45,7 @@ public class Model {
 	private File notesFile;
 
 	// Constants
-	private static String FILE_PATH = "../simple_jotts_notes.json";
+	private static String FILE_PATH = "./simple_jotts_notes.json";
 
 	public Model() {
 		this.noteList = new LinkedList<Note>();

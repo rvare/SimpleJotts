@@ -34,6 +34,25 @@ Then, to run the project:
 java -cp ../lib/json-java.jar; org/simplejotts/main/SimpleJottsMain
 ```
 
+Or, to create a jar file, do the following in the project's main directory (you should be in the same directory as the `manifest.txt` file):
+
+```bash
+jar -cvmf manifest.txt simplejotts.jar -C classes/ .
+```
+
+Then you can run:
+
+```bash
+java -jar simplejotts.jar
+```
+
+*Note:* When I first did these steps, for some reason an internal class in `Controller.java` was renamed. Instead of `Controller$ListListener.class`, it was `Controller$listListener.class` (lower case l). If you have errors, check for this.
+
+## Distribution
+
+Please be sure to distribute with the `lib/json-java.jar` with the `simplejotts.jar` file as this is required for the application to work.
+Also include the `LICENSE` file as well.
+
 # Style Guide
 
 The following is the styling guide for the source code:

@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Richard Varela
+Class-Path: lib/json-java.jar
+Main-Class: org.simplejotts.main.SimpleJottsMain
